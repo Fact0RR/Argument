@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title>Аргумент</title>
+    <link rel="stylesheet" href="../css/styleVideo.css">
+  </head>
+  <body>
+    <a href="/" target="_self">Переход на вкладку с обработкой фото</a>
+    <div>
+        <p>Выберите и отправьте видео .mp4 </p>
+        
+        <p><input type="file" name="f" accept="video/mp4" id = "videoFile">
+          
+        <button id = "sendVideo" onclick="workWithVideo()">отправить видео на обработку</button></p>
+        <div id ="linkTo"></div>
+        </div>
+        
+
+    <div class="tableFixHead">
+        <table>
+          <thead id ="fixed">
+            <tr><th>Номер кадра</th><th>стекло</th><th>металл</th><th>пластик</th><th>дерево</th></tr>
+          </thead>
+          <tbody id = "tableBody">
+            
+            
+          </tbody>
+        </table>
+      </div>
+      <script src="../js/video.js"> </script>
+  </body>
+  
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" >
+<html>
+ <head>
+    <title>Аргумент</title>
+    <link rel="stylesheet" href="../css/style.css">
+ </head>
+ <body>
+    <h1>Аргумент</h1>
+    <div id="drop-area">
+        <form class="my-form">
+          <p>Drag&drop поле для фотографий в формате .png и .jpg</p>
+          <input type="file" id="fileElem" multiple accept="image/*" onchange="handleFiles(this.files)">
+          <label class="button" for="fileElem">Выберите файл/файлы</label>
+        </form>
+       <!--  <progress id="progress-bar" max=100 value=0 ></progress> -->
+        <div id="gallery" /></div>
+    </div>
+    
+    <a href="/video" target="_self">Переход на вкладку с видео</a>
+    <!--<button id = "testButton">Кнопка для конфертации файлов в base64</button>
+    <div>
+      <p>Для большей точности, вы можете загрузить 2 фото в RGB+мультиспектор(.png и .tif) </p>
+      <p><input type="file" name="f" accept="image/jpeg,image/png" id = "pngField">
+        <input type="file" name="f" accept="image/tiff,image/tif" id = "tifField">
+      <button id = "send2files" onclick="workWithDoubleImages()">отправить 2 файла на обработку</button></p>
+    </div>-->
+     </form>
+
+    <div class="slider-container">
+      <div class="slider" id = "slider">
+     
+      </div>
+      <button class="prev-button" aria-label="Посмотреть предыдущий слайд">&lt;</button>
+      <button class="next-button" aria-label="Посмотреть следующий слайд">&gt</button>
+    </div>
+      <script src="../js/slider.js"></script>
+      <script src="../js/dad.js"> </script>
+
+    
+
+ </body>
+</html>
+

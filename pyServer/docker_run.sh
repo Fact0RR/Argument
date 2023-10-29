@@ -1,0 +1,1 @@
+docker run -itd --rm --name py_server -p 5000:5000 py_server
