@@ -1,1 +1,1 @@
-docker run -itd --rm --name go_server -p 8080:8080 go_server
+docker run -it --rm --name go_server -p 8080:8080 go_server

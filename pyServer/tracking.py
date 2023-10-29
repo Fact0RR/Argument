@@ -14,8 +14,8 @@ CLASS_NAMES = {
 def get_video_writer(output_video_path: str, input_video: cv2.VideoCapture) -> cv2.VideoWriter:
     return cv2.VideoWriter(
         output_video_path,
-         cv2.VideoWriter_fourcc(*'H264'),
-        #cv2.VideoWriter_fourcc(*'XVID'),
+        # cv2.VideoWriter_fourcc(*'XVID'),
+        cv2.VideoWriter_fourcc(*"H264"),
         input_video.get(cv2.CAP_PROP_FPS),
         (int(input_video.get(cv2.CAP_PROP_FRAME_WIDTH)), int(input_video.get(cv2.CAP_PROP_FRAME_HEIGHT))),
     )
@@ -66,6 +66,7 @@ def predict_video(
     output_video_path: str=None,
     conf: float=0.25,
     iou: float=0.7,
+    min_obj_duration: int=3,
     device: str="cpu",
 ) -> dict:
     input_video = cv2.VideoCapture(input_video_path)
@@ -73,14 +74,12 @@ def predict_video(
         output_video = get_video_writer(output_video_path, input_video)
 
     cls_ids = [set() for _ in range(NUM_CLASSES)]
-    answer = {
-        "frames": [],
-        "video": [],
-    }
-
+    objects = {}
+    frame_number = -1
     while True:
         # Read frame
         ret, frame = input_video.read()
+        frame_number += 1
         if not ret:
             break
         
@@ -88,11 +87,16 @@ def predict_video(
         result = model.track(frame, conf=conf, iou=iou, persist=True, verbose=False, device=device)[0]
 
         # Update object counts
-        frame_counts = [0] * NUM_CLASSES
         for id, cls in zip(result.boxes.id, result.boxes.cls):
             cls_ids[int(cls)].add(int(id))
-            frame_counts[int(cls)] += 1
-        answer["frames"].append(frame_counts)
+            if int(id) not in objects:
+                objects[int(id)] = {
+                    "class": int(cls),
+                    "start": frame_number,
+                    "end": frame_number,
+                }
+            else:
+                objects[int(id)]["end"] = frame_number
 
         # Draw output frame
         if output_video_path is not None:
@@ -102,5 +106,17 @@ def predict_video(
     if output_video_path is not None:
         output_video.release()
     
-    answer["video"] = [len(cls_ids[i]) for i in range(NUM_CLASSES)]
+    answer = {
+        "video": [0] * NUM_CLASSES,
+        "frames": [[0] * NUM_CLASSES for _ in range(frame_number)],
+    }
+    for obj in objects.values():
+        # Skip objects that were not detected enough time
+        if (obj["end"] - obj["start"] + 1) < min_obj_duration:
+            continue
+        
+        answer["video"][obj["class"]] += 1
+        for i in range(obj["start"], obj["end"]+1):
+            answer["frames"][i][obj["class"]] += 1
+
     return answer

@@ -13,7 +13,7 @@ from tracking import predict_video,predict_image
 # import os
 
 # print(os.listdir())
-model = YOLO("models/best.pt")
+model = YOLO("test/yolov8n.pt")
 
 # создание фласк приложения
 app = Flask(__name__)

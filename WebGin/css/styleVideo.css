@@ -1,8 +1,72 @@
 /* Fix table head */
-.tableFixHead    { overflow: auto; height: 100px; }
+.tableFixHead    { 
+    overflow: auto; 
+    width: 600px; 
+    height: auto; 
+    margin: auto;
+    border-radius: 15px;
+}
 .tableFixHead th { position: sticky; top: 0; }
 
+a {
+    margin-left: 1%;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background: #fff;
+    padding: 5px;
+}
+a:hover {
+    background: #369;
+    border-color: #369;
+    color: #fff;
+}
+video {
+    margin-top: 50px;
+    margin-left: 25%;
+}
 /* Just common table stuff. */
-table  { border-collapse: collapse; width: 100%; height: 300;}
-th, td { padding: 8px 16px; }
+table  { 
+    border-collapse: collapse; 
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+ }
+
+th, td { 
+    width: auto;
+    height: auto;
+    padding: 8px 16px; 
+    background-color: #d5d1defe;
+}
 th     { background:#eee; }
+body {
+    font-family: "Ruberoid", sans-serif;
+    margin: 0;
+
+    background: linear-gradient(45deg, #43C6AC, #F8FFAE); 
+    background-size: 200%, 200%;
+    animation: gradient 45s ease infinite; 
+  }
+
+@keyframes gradient {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+  
+}
+
+@font-face {
+    font-family: 'Ruberoid';
+    src: local('Ruberoid Regular'), local('Ruberoid-Regular'),
+        url(../css/fonts/Ruberoid-Regular.woff2) format('woff2'),
+        url(../css/fonts/Ruberoid-Regular.woff) format('woff'),
+        url(../css/fonts/Ruberoid-Regular.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }

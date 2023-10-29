@@ -76,7 +76,7 @@ func main() {
 			log.Fatalln(err)
 		}
 		//пост запрос на сервер с нейронкой
-		resp, err := http.Post("http://0.0.0.0:5000/sendFromPy", "application/json", bytes.NewBuffer(bytesRepresentation)) 
+		resp, err := http.Post("http://localhost:5000/sendFromPy", "application/json", bytes.NewBuffer(bytesRepresentation)) 
     	if err != nil { 
         	log.Println(err) 
     	}
@@ -114,7 +114,7 @@ func main() {
 		}
 		//пост запрос на сервер с нейронкой
 		log.Println("Запрос на py серрвер")
-		resp, err := http.Post("http://0.0.0.0:5000/sendFromPyVideo", "application/json", bytes.NewBuffer(bytesRepresentation)) 
+		resp, err := http.Post("http://localhost:5000/sendFromPyVideo", "application/json", bytes.NewBuffer(bytesRepresentation)) 
     	if err != nil { 
         	log.Println(err) 
     	}

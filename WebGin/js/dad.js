@@ -189,7 +189,7 @@ function requestDouble(json){
 
 
 function uploadFile(file, i) {
-  var url = 'http://0.0.0.0:8080/send'
+  var url = 'http://localhost:8080/send'
   var xhr = new XMLHttpRequest()
   var formData = new FormData()
   xhr.open('POST', url, true)
