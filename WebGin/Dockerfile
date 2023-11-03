@@ -7,8 +7,8 @@ ADD . .
 
 RUN go mod download
 
-RUN go build /usr/src/app/server.go
+RUN go build /usr/src/app/main.go
 
 EXPOSE 8080
 
-CMD go run /usr/src/app/server.go
+CMD go run /usr/src/app/main.go

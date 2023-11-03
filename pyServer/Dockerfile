@@ -7,13 +7,8 @@ ADD ./requirements.txt ./requirements.txt
 RUN pip install -r requirements.txt
 
 # Add files
-ADD ./server.py ./server.py
-ADD ./test ./test
-ADD ./tracking.py ./tracking.py
-
-RUN apt update \
-    && apt install -y ffmpeg libsm6 libxext6
+ADD . .
 
 EXPOSE 5000
 
-ENTRYPOINT ["python3", "server.py"]
+ENTRYPOINT ["python3", "main.py"]
